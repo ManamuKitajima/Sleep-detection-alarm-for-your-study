@@ -82,7 +82,7 @@
             status = "Noone" 
         }else if(prediction[4].probability.toFixed(2) > 0.90){
             status = "Sleep"
-        }else if(prediction[].probability.toFixed(2) > 0.90){
+        }else if(prediction[5].probability.toFixed(2) > 0.90){
             status = "Bad_Pose" 
         }
 
@@ -96,20 +96,20 @@
         }else if(status == "Sleep"){
             study.pause();
             alarm.play();
-            alarm.addEventListener("timeupdate", function() {
+            /*alarm.addEventListener("timeupdate", function() {
                 var NOW = Math.floor(alarm.currentTime);
                 document.getElementById('btn_time').innerHTML = NOW + 's';
             }, true);
             if(NOW<=50){
                 alarm.volume = NOW;
-            }
+            }*/
             alarm.loop = true;
          }else if(status == "Noone"){
-            alarm.pause();
-            study.pause();
+           /* alarm.pause();
+            study.pause();*/
         }else if(status == "Bad_Pose"){
-            alarm.pause();
-            study.pause();
+           /* alarm.pause();
+            study.pause();*/
         }else{
             study.pause();
             alarm.pause();
