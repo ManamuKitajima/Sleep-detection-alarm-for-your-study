@@ -92,7 +92,7 @@
         }else if(status == "Study"){
             alarm.pause();
             study.play();
-            study.loop = true;
+           // study.loop = true;
         }else if(status == "Sleep"){
             study.pause();
             alarm.play();
@@ -103,17 +103,20 @@
             if(NOW<=50){
                 alarm.volume = NOW;
             }*/
-            alarm.loop = true;
-         }else if(status == "Noone"){
-           /* alarm.pause();
-            study.pause();*/
+            //alarm.loop = true;
+         }else{
+           study.pause();
+           alarm.pause();
+         }
+        /*
+        else if(status == "Noone"){
+           alarm.pause();
+           study.pause();
         }else if(status == "Bad_Pose"){
-           /* alarm.pause();
-            study.pause();*/
-        }else{
-            study.pause();
-            alarm.pause();
+           alarm.pause();
+           study.pause();
         }
+        */
         
         // finally draw the poses
         drawPose(pose);
