@@ -57,7 +57,8 @@
         window.requestAnimationFrame(loop);
     }
     var status = "No status"
-    var audio = new Audio('Alarm.mp3');
+    var alarm = new Alarm('Alarm.mp3');
+    var study = new Study('GhostrifterOfficial-OnMyWay.mp3');
     async function predict() {
         // Prediction #1: run input through posenet
         // estimatePose can take in an image, video or canvas html element
@@ -70,17 +71,48 @@
                 prediction[i].className + ": " + prediction[i].probability.toFixed(2);
             labelContainer.childNodes[i].innerHTML = classPrediction;
         }
-        if(prediction[2].probability.toFixed(2) > 0.90){
+
+        if(prediction[0].probability.toFixed(2) > 0.90){
+            status = "Wake" 
+        }else if(prediction[1].probability.toFixed(2) > 0.90){
+            status = "Study" 
+        }else if(prediction[2].probability.toFixed(2) > 0.90){
             status = "Sleep" 
-        }else{
-            status = "Wake"
+        }else if(prediction[3].probability.toFixed(2) > 0.90){
+            status = "Noone" 
+        }else if(prediction[4].probability.toFixed(2) > 0.90){
+            status = "Sleep"
+        }else if(prediction[2].probability.toFixed(2) > 0.90){
+            status = "Bad_Pose" 
         }
-        if(status == "Sleep"){
-            audio.play();
-         }else if(status == "Wake"){
-            audio.pause();
+
+        if (status == "Wake"){
+            alarm.pause();
+            study.pause();
+        }else if(status == "Study"){
+            alarm.pause();
+            study.play();
+            study.loop = true;
+        }else if(status == "Sleep"){
+            study.pause();
+            alarm.play();
+            alarm.addEventListener("timeupdate", function() {
+                var NOW = Math.floor(alarm.currentTime);
+                document.getElementById('btn_time').innerHTML = NOW + 's';
+            }, true);
+            if(NOW<=50){
+                alarm.volume = NOW;
+            }
+            alarm.loop = true;
+         }else if(status == "Noone"){
+            alarm.pause();
+            study.pause();
+        }else if(status == "Bad_Pose"){
+            alarm.pause();
+            study.pause();
         }else{
-            audio.pause();
+            study.pause();
+            alarm.pause();
         }
         
         // finally draw the poses
