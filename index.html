@@ -57,7 +57,7 @@
         window.requestAnimationFrame(loop);
     }
     var status = "No status"
-    var alarm = new Alarm('Alarm.mp3');
+    var audio = new Audio('Alarm.mp3');
     //var study = new Study('GhostrifterOfficial-OnMyWay.mp3');
     async function predict() {
         // Prediction #1: run input through posenet
@@ -78,24 +78,24 @@
             status = "Study" 
         }else if(prediction[2].probability.toFixed(2) > 0.90){
             status = "Sleep" 
-        }else if(prediction[3].probability.toFixed(2) > 0.90){
+        }/*else if(prediction[3].probability.toFixed(2) > 0.90){
             status = "Noone" 
         }else if(prediction[4].probability.toFixed(2) > 0.90){
             status = "Sleep"
         }else if(prediction[5].probability.toFixed(2) > 0.90){
             status = "Bad_Pose" 
-        }
+        }*/
 
         if (status == "Wake"){
-            alarm.pause();
+            audio.pause();
             //study.pause();
         }else if(status == "Study"){
-            alarm.pause();
+            audio.pause();
             //study.play();
            // study.loop = true;
         }else if(status == "Sleep"){
             //study.pause();
-            alarm.play();
+            audio.play();
             /*alarm.addEventListener("timeupdate", function() {
                 var NOW = Math.floor(alarm.currentTime);
                 document.getElementById('btn_time').innerHTML = NOW + 's';
@@ -106,7 +106,7 @@
             //alarm.loop = true;
          }else{
            //study.pause();
-           alarm.pause();
+           audio.pause();
          }
         /*
         else if(status == "Noone"){
