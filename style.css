@@ -1,9 +1,56 @@
 @charset "utf-8";
+@import url(http://fonts.googleapis.com/earlyaccess/notosansjapanese.css);
+
+.Top_image img{
+    position: absolute;/*相対配置*/      
+    width:280px;                                   /* 横幅のサイズを指定    */
+    height:280px;                                 /* 縦幅のサイズを指定    */    
+    top:  3px;
+    left: 60px;
+    transform: rotate(-20deg);
+}
+
+.Top_image2 img{
+    position: absolute;/*相対配置*/      
+    width:500px;                                   /* 横幅のサイズを指定    */
+    height:550px;                                 /* 縦幅のサイズを指定    */    
+    top:  -120px;
+    left: 1100px;
+    transform: rotate(4deg);
+}
+
+
+
+
+.back_image img{
+    position: relative;/*相対配置*/
+    background-repeat: repeat;                /* 画像の繰り返しを指定  */            
+    opacity: 0.3;
+    width:1495px;                                   /* 横幅のサイズを指定    */
+    height:1000pX;                                 /* 縦幅のサイズを指定    */    
+}
+.back_image p{
+    position: absolute;
+    color: rgb(0, 0, 0);
+    font-size: 2em;
+    font-weight: 600;
+    font-family:'Noto Sans Japanese';
+    top:  250px;
+    left: 20px;   
+}
 h1 {
     margin-left: auto;
     margin-right: auto;
-    width: 14em;
-    background-color: rgba(0, 255, 255, 0.342);
-    color: rgba(0, 0, 0, 0.795);
-    font-size: 20;
+    width: 20em;
+    text-align: center;
+    position: relative;
+    color: white;
+    background: #81d0cb;
+    padding: 0.5em 5.5em 0.5em 5.5em;
+    font-size: 3em;
+    font-family:'Noto Sans Japanese';
+}
+.Change_red{
+    color: rgb(201, 0, 0);
+    font-size: 1.5em;
 }
