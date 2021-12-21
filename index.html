@@ -57,8 +57,7 @@
         window.requestAnimationFrame(loop);
     }
     var status = "No status"
-    var alarm = new Alarm('Alarm.mp3');
-    alarm.loop = true;
+    var audio = new Audio('Alarm.mp3');
     //var study = new Study('GhostrifterOfficial-OnMyWay.mp3');
     async function predict() {
         // Prediction #1: run input through posenet
@@ -88,25 +87,27 @@
         }*/
 
         if (status == "Wake"){
-            alarm.pause();
+            audio.pause();
             //study.pause();
         }else if(status == "Study"){
-            alarm.pause();
+            audio.pause();
             //study.play();
            // study.loop = true;
         }else if(status == "Sleep"){
             //study.pause();
-            alarm.play();
-            /*alarm.addEventListener("timeupdate", function() {
+            audio.play();
+            /*
+            alarm.addEventListener("timeupdate", function() {
                 var NOW = Math.floor(alarm.currentTime);
                 document.getElementById('btn_time').innerHTML = NOW + 's';
             }, true);
             if(NOW<=50){
                 alarm.volume = NOW;
-            }*/
+            }
+            */
          }else{
            //study.pause();
-           alarm.pause();
+           audio.pause();
          }
         /*
         else if(status == "Noone"){
