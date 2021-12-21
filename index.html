@@ -58,6 +58,7 @@
     }
     var status = "No status"
     var audio = new Audio('Alarm.mp3');
+    var study = new Study('GhostrifterOfficial-OnMyWay')
     //var study = new Study('GhostrifterOfficial-OnMyWay.mp3');
     async function predict() {
         // Prediction #1: run input through posenet
@@ -88,13 +89,13 @@
 
         if (status == "Wake"){
             audio.pause();
-            //study.pause();
+            study.pause();
         }else if(status == "Study"){
             audio.pause();
-            //study.play();
+            study.play();
            // study.loop = true;
         }else if(status == "Sleep"){
-            //study.pause();
+            study.pause();
             audio.play();
             /*
             alarm.addEventListener("timeupdate", function() {
@@ -106,7 +107,7 @@
             }
             */
          }else{
-           //study.pause();
+           study.pause();
            audio.pause();
          }
         /*
