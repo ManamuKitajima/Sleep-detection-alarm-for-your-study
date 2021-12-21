@@ -58,6 +58,7 @@
     }
     var status = "No status"
     var alarm = new Audio('Alarm.mp3');
+    alarm.volume = 0.1;
     var study = new Audio('jazz.mp3');
     async function predict() {
         // Prediction #1: run input through posenet
@@ -130,6 +131,14 @@
                 tmPose.drawSkeleton(pose.keypoints, minPartConfidence, ctx);
             }
         }
+    }
+    function fadein(){
+      var alarmv = alarm.volume;
+      if (alarmv < 1.0)
+      {
+        alarm.volume = Math.ceil((vl+0.1)*10)/10;
+        setTimeout("fadein()",200);
+      }
     }
 </script>
 </body>
