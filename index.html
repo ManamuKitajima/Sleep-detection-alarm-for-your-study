@@ -58,6 +58,7 @@
     }
     var status = "No status"
     var alarm = new Alarm('Alarm.mp3');
+    alarm.loop = true;
     //var study = new Study('GhostrifterOfficial-OnMyWay.mp3');
     async function predict() {
         // Prediction #1: run input through posenet
@@ -103,7 +104,6 @@
             if(NOW<=50){
                 alarm.volume = NOW;
             }*/
-            //alarm.loop = true;
          }else{
            //study.pause();
            alarm.pause();
