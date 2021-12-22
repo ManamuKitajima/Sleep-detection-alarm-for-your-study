@@ -143,7 +143,9 @@
             alarm.pause();
             siren.pause();
             sigure.pause();
-            study.pause();
+            b1.pause();
+            b2.pause();
+            b3.pause();
         }else if(status == "Study"){
             alarm.pause();
             siren.pause();
@@ -156,7 +158,9 @@
                 b3.play();
             }
         }else if(status == "Sleep"){
-            study.pause();
+            b1.pause();
+            b2.pause();
+            b3.pause();
             if(A_Sound.value === '1'){
                 alarm.play();
                 console.log("a");
@@ -168,7 +172,9 @@
                 console.log("c");
             }
          }else{
-           study.pause();
+           b1.pause();
+           b2.pause();
+           b3.pause();
            alarm.pause();
            siren.pause();
            sigure.pause();
