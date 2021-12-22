@@ -120,9 +120,13 @@
 
         if (status == "Wake"){
             alarm.pause();
+            siren.pause();
+            sigure.pause();
             study.pause();
         }else if(status == "Study"){
             alarm.pause();
+            siren.pause();
+            sigure.pause();
             study.play();
         }else if(status == "Sleep"){
             study.pause();
@@ -139,6 +143,8 @@
          }else{
            study.pause();
            alarm.pause();
+           siren.pause();
+           sigure.pause();
          }
         /*
         else if(status == "Noone"){
