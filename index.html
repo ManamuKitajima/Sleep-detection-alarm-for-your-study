@@ -19,6 +19,29 @@
         <img src ='back.png'/>
         <p>このサイトでは姿勢検知を行います。勉強しているときは作業用bgmを再生しますが寝たらアラームを再生します。</p>
     </div>
+    <form method="post">
+        <div>
+            <label for="A_Sound">アラームの音を選択してください</label>
+            <select id = "A_Sound">
+            <option value="alarm">アラーム</option>
+            <option value="警報">警報</option>
+            <option value="しぐれうい">しぐれうい</option>
+            </select>
+        </div>
+    </form>
+
+    <script>
+        function valueChange(){
+          console.log('新しく ' + A_Sound.value + ' を選択しました');
+        }
+        
+        let A_Sound = document.getElementById('A_Sound');
+        A_Sound.addEventListener('change', valueChange);
+    </script>
+
+    <label><input type="radio" name="sleep_sound"/>アラーム</label>
+    <label><input type="radio" name="sleep_sound"/>警報</label>
+    <label><input type="radio" name="sleep_sound"/>しぐれうい</label>
     <div>Teachable Machine Pose Model</div>
 <button type="button" onclick="init()">Start</button>
 <div><canvas id="canvas"></canvas></div>
@@ -67,7 +90,13 @@
         window.requestAnimationFrame(loop);
     }
     var status = "No status"
-    var alarm = new Audio('Alarm.mp3');
+    if(A_Sound.options[0].selected = true;){
+        var alarm = new Audio('Alarm.mp3');
+    }else if(A_Sound.options[1].selected = true;){
+        var alarm = new Audio('Siren.mp3');
+    }else if(A_Sound.options[2].selected = true;){
+        var alarm = new Audio('Sigureui.mp3');
+    }
     var study = new Audio('jazz.mp3');
     async function predict() {
         // Prediction #1: run input through posenet
