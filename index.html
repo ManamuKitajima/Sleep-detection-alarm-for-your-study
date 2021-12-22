@@ -23,16 +23,16 @@
         <div>
             <label for="A_Sound">アラームの音を選択してください</label>
             <select id = "A_Sound">
-            <option value="alarm">アラーム</option>
-            <option value="警報">警報</option>
-            <option value="しぐれうい">しぐれうい</option>
+            <option value="1">アラーム</option>
+            <option value="2">警報</option>
+            <option value="3">しぐれうい</option>
             </select>
         </div>
     </form>
 
     <script>
         function valueChange(){
-          console.log('新しく ' + A_Sound.value + ' を選択しました');
+          console.log(A_Sound.value);
         }
         
         let A_Sound = document.getElementById('A_Sound');
@@ -87,7 +87,13 @@
     }
     var status = "No status"
 
-    var alarm = new Audio(''+ A_Sound.value +'.mp3');
+    if(A_Sound.value === 1){
+      var alarm = new Audio('alarm.mp3');
+    }else if(A_Sound.value === 2){
+      var alarm = new Audio('siren.mp3');
+    }else if(A_Sound.value === 3){
+      var alarm = new Audio('Sigureui.mp3);
+    }
     var study = new Audio('jazz.mp3');
     async function predict() {
         // Prediction #1: run input through posenet
