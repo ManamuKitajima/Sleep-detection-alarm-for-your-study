@@ -30,6 +30,16 @@
         </div>
     </form>
 
+    <form method="post">
+        <div>
+            <label class = "S_Sound" for="S_Sound">bgmを選択してください</label>
+            <select id = "S_Sound">
+            <option value="4">On My Way / Ghostrifter Official</option>
+            <option value="5">2:23 AM / しゃろう</option>
+            <option value="6">サマーアイスクリーム / 桜餅ルナ</option>
+            </select>
+        </div>
+    </form>
     <script>
         function valueChange(){
           console.log(A_Sound.value);
@@ -37,6 +47,14 @@
         
         let A_Sound = document.getElementById('A_Sound');
         A_Sound.addEventListener('change', valueChange);
+    </script>
+     <script>
+        function valueChange(){
+          console.log(S_Sound.value);
+        }
+        
+        let S_Sound = document.getElementById('S_Sound');
+        S_Sound.addEventListener('change', valueChange);
     </script>
     <div>Teachable Machine Pose Model</div>
 <button type="button" onclick="init()">Start</button>
@@ -88,6 +106,9 @@
     var alarm = new Audio('Alarm.mp3');
     var siren = new Audio('Siren.mp3');
     var sigure = new Audio('Sigureui.mp3');
+    var b1 = new Audio('jazz.mp3');
+    var b2 = new Audio('223.mp3');
+    var b3 = new Audio('summer.mp3');
     var status = "No status"
     var study = new Audio('jazz.mp3');
     async function predict() {
@@ -127,7 +148,13 @@
             alarm.pause();
             siren.pause();
             sigure.pause();
-            study.play();
+             if(S_Sound.value === '4'){
+                b1.play();
+            }else if(s_Sound.value === '5'){
+                b2.play();
+            }else if(S_Sound.value === '6'){
+                b3.play();
+            }s
         }else if(status == "Sleep"){
             study.pause();
             if(A_Sound.value === '1'){
