@@ -38,10 +38,6 @@
         let A_Sound = document.getElementById('A_Sound');
         A_Sound.addEventListener('change', valueChange);
     </script>
-
-    <label><input type="radio" name="sleep_sound"/>アラーム</label>
-    <label><input type="radio" name="sleep_sound"/>警報</label>
-    <label><input type="radio" name="sleep_sound"/>しぐれうい</label>
     <div>Teachable Machine Pose Model</div>
 <button type="button" onclick="init()">Start</button>
 <div><canvas id="canvas"></canvas></div>
@@ -91,9 +87,7 @@
     }
     var status = "No status"
 
-    var alarm = new Audio('Alarm.mp3');
-    var silen = new Audio('Siren.mp3');
-    var sigure = new Audio('Sigureui.mp3');
+    var alarm = new Audio(''+ A_Sound.value +'.mp3');
     var study = new Audio('jazz.mp3');
     async function predict() {
         // Prediction #1: run input through posenet
@@ -130,13 +124,7 @@
             study.play();
         }else if(status == "Sleep"){
             study.pause();
-            if(A_Sound.options[0].selected = true){
-                alarm.play();
-            }else if(A_Sound.options[1].selected = true){
-               silen.play();
-            }else if(A_Sound.options[2].selected = true){
-               sigure.play();
-            }
+            alarm.play();
          }else{
            study.pause();
            alarm.pause();
