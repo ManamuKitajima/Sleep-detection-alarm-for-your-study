@@ -152,10 +152,16 @@
             sigure.pause();
              if(S_Sound.value === '4'){
                 b1.play();
+                b2.pause();
+                b3.pause();
             }else if(S_Sound.value === '5'){
                 b2.play();
+                b1.pause();
+                b3.pause();
             }else if(S_Sound.value === '6'){
                 b3.play();
+                b1.pause();
+                b2.pause();
             }
         }else if(status == "Sleep"){
             b1.pause();
@@ -163,12 +169,18 @@
             b3.pause();
             if(A_Sound.value === '1'){
                 alarm.play();
+                siren.pause();
+                sigure.pause();
                 console.log("a");
             }else if(A_Sound.value === '2'){
                 siren.play();
+                alarm.pause();
+                sigure.pause();
                 console.log("b");
             }else if(A_Sound.value === '3'){
                 sigure.play();
+                alarm.pause();
+                siren.pause();
                 console.log("c");
             }
          }else{
