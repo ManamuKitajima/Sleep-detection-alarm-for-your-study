@@ -86,14 +86,6 @@
         window.requestAnimationFrame(loop);
     }
     var status = "No status"
-
-    if(A_Sound.value === 1){
-      var alarm = new Audio('alarm.mp3');
-    }else if(A_Sound.value === 2){
-      var alarm = new Audio('siren.mp3');
-    }else if(A_Sound.value === 3){
-      var alarm = new Audio('Sigureui.mp3');
-    }
     var study = new Audio('jazz.mp3');
     async function predict() {
         // Prediction #1: run input through posenet
@@ -106,6 +98,17 @@
             const classPrediction =
                 prediction[i].className + ": " + prediction[i].probability.toFixed(2);
             labelContainer.childNodes[i].innerHTML = classPrediction;
+        }
+        
+        if(A_Sound.value === '1'){
+            var alarm = new Audio('alarm.mp3');
+            console.log("a");
+        }else if(A_Sound.value === '2'){
+            var alarm = new Audio('siren.mp3');
+            console.log("b");
+        }else if(A_Sound.value === '3'){
+            var alarm = new Audio('Sigureui.mp3');
+            console.log("c");
         }
 
         if(prediction[0].probability.toFixed(2) > 0.90){
