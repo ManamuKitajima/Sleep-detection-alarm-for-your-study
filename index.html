@@ -85,6 +85,9 @@
         await predict();
         window.requestAnimationFrame(loop);
     }
+    var alarm = new Audio('Alarm.mp3');
+    var siren = new Audio('Siren.mp3');
+    var sigure = new Audio('Sigureui.mp3');
     var status = "No status"
     var study = new Audio('jazz.mp3');
     async function predict() {
@@ -100,16 +103,6 @@
             labelContainer.childNodes[i].innerHTML = classPrediction;
         }
         
-        if(A_Sound.value === '1'){
-            var alarm = new Audio('Alarm.mp3');
-            console.log("a");
-        }else if(A_Sound.value === '2'){
-            var alarm = new Audio('Siren.mp3');
-            console.log("b");
-        }else if(A_Sound.value === '3'){
-            var alarm = new Audio('Sigureui.mp3');
-            console.log("c");
-        }
 
         if(prediction[0].probability.toFixed(2) > 0.90){
             status = "Wake" 
@@ -133,7 +126,16 @@
             study.play();
         }else if(status == "Sleep"){
             study.pause();
-            alarm.play();
+            if(A_Sound.value === '1'){
+                alarm.play();
+                console.log("a");
+            }else if(A_Sound.value === '2'){
+                siren.play();
+                console.log("b");
+            }else if(A_Sound.value === '3'){
+                sigure.play();
+                console.log("c");
+            }
          }else{
            study.pause();
            alarm.pause();
