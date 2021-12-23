@@ -1,6 +1,7 @@
 @charset "utf-8";
 @import url(https://fonts.googleapis.com/earlyaccess/notosansjapanese.css);
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+@import url(https://fonts.googleapis.com/css?family=Oleo+Script+Swash+Caps);
 
 .Top_image img{
     position: absolute;/*相対配置*/      
@@ -149,6 +150,88 @@ h2{
     top: 760px;
     left: 245px;
     margin: auto;
+}
+.five{
+ position: absolute;
+ margin-left: auto;
+ margin-right: auto;
+ text-align: center;
+ width: 200px;
+ height: 200px;
+ font-size: 2em;
+ font-weight: 600;
+ font-family:'Noto Sans Japanese';
+ background: rgb(0, 255, 55);
+ border-radius: 50%;
+ color: #111111;
+ overflow: hidden;
+ top: 760px;
+ left: 1290px;
+ border: 6px outset #000000;
+}
+.five:active{
+ -webkit-transform: translateY(5px);
+ transform: translateY(5px);
+ border-bottom: none
+}
+.ten{
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    width: 200px;
+    height: 200px;
+    font-size: 2em;
+    font-weight: 600;
+    font-family:'Noto Sans Japanese';
+    background: rgb(0, 255, 55);
+    border-radius: 50%;
+    color: #111111;
+    overflow: hidden;
+    top: 1000px;
+    left: 1290px;
+    border: 6px outset #000000;
+}
+.ten:active{
+   -webkit-transform: translateY(5px);
+    transform: translateY(5px);
+    border-bottom: none
+}
+.resetb{
+    text-align: center;
+    position: absolute;
+    top: 580px;
+    left: 1245px;
+    width: 200px;
+    margin: auto;
+    font-size: 2em;
+    font-weight: 600;
+    font-family:'Noto Sans Japanese';
+    background-color: #fcfcfc;
+    border: 6px outset #2800b9;
+}
+.resetb:active{
+    -webkit-transform: translateY(5px);
+    transform: translateY(5px);
+    border-bottom: none   
+}
+.clock{
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    top: 580px;
+    left: 1200px;
+    width: 280px;
+    font-size: 4em;;
+    font-family: 'Oleo Script Swash Caps';
+    background-color: aliceblue;
+    border: 6px outset #000000;
+}
+.reference{
+    position: absolute;
+    line-height: 0.8em;
+    top: 2100px;  
 }
 
 
