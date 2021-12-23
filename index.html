@@ -196,7 +196,9 @@
     img[1] = new Image();
     img[1].src = "./Status_pic/s2.JPG";
     img[2] = new Image();
-    img[2].src=  "./Status_pic/s3.JPG";
+    img[2].src =  "./Status_pic/s3.JPG";
+    img[3] = new Image();
+    img[3].src =  "./Status_pic/s4.JPG";
 
     async function predict() {
         // Prediction #1: run input through posenet
@@ -290,7 +292,7 @@
             siren.pause();
             sigure.pause();
         }else if (status == "Rest"){
-            document.getElementById("camback").src=img[2].src;
+            document.getElementById("camback").src=img[4].src;
             alarm.pause();
             siren.pause();
             sigure.pause();
