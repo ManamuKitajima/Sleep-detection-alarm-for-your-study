@@ -10,13 +10,13 @@
 <body>
 <h1>あなたの<span class = "Change_red">勉強</span>をサポートします<br>~勉強用bgm・睡眠防止アラーム~</h1>
     <div class = "Top_image">
-        <img src = 'alarm_ico.png'>   
+        <img src = './Icon_pic/alarm_ico.png'>   
     </div>
     <div class = "Top_image2">
-        <img src = 'study_ico.png'>   
+        <img src = './Icon_pic/study_ico.png'>   
     </div>
     <div class="back_image">
-        <img src ='back.png'/>
+        <img src ='./Icon_pic/back.png'/>
         <p></p>
     </div>
     <form method="post">
@@ -184,22 +184,19 @@
         await predict();
         window.requestAnimationFrame(loop);
     }
-    var alarm = new Audio('Alarm.mp3');
-    var siren = new Audio('Siren.mp3');
-    var sigure = new Audio('Sigureui.mp3');
-    var b1 = new Audio('jazz.mp3');
-    var b2 = new Audio('223.mp3');
-    var b3 = new Audio('summer.mp3');
-    b1.volume = 0.1;
-    b2.volume = 0.1;
-    b3.volume = 0.1;
+    var alarm = new Audio('./Alarm/Alarm.mp3');
+    var siren = new Audio('./Alarm/Siren.mp3');
+    var sigure = new Audio('./Alarm/Sigureui.mp3');
+    var b1 = new Audio('./Bgm/jazz.mp3');
+    var b2 = new Audio('./Bgm/223.mp3');
+    var b3 = new Audio('./Bgm/summer.mp3');
     var img = new Array();
     img[0] = new Image();
-    img[0].src = "s1.JPG";
+    img[0].src = "./Status_pic/s1.JPG";
     img[1] = new Image();
-    img[1].src = "s2.JPG";
+    img[1].src = "./Status_pic/s2.JPG";
     img[2] = new Image();
-    img[2].src=  "s3.JPG";
+    img[2].src=  "./Status_pic/s3.JPG";
 
     async function predict() {
         // Prediction #1: run input through posenet
