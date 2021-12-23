@@ -58,6 +58,67 @@
         let S_Sound = document.getElementById('S_Sound');
         S_Sound.addEventListener('change', valueChange);
     </script>
+    
+        <div id="timer">
+    <p class = 'clock'>
+    <span id="min">0</span> m
+    <span id="sec">0</span> s
+    </p>
+    <p>
+    <input type="button" class = 'five'id="start" value="5分休憩">
+    <input type="button" class= 'ten' id="stop" value="10分休憩">
+    <input type="button" class = 'resetb' id="reset" value="RESET">
+    </p>
+    </div>
+    <script>
+        window.onload = function(){
+        } 
+        var time = 0;
+        var counter;
+        var min = document.getElementById("min");
+        var sec = document.getElementById("sec");
+        var start = document.getElementById("start");
+        var stop = document.getElementById("stop");
+        var reset = document.getElementById("reset");
+        start.onclick = function() {
+            time = 300;
+            toggle1();
+            counter = setInterval( count, 1000 );
+        }
+        stop.onclick = function() {
+            time = 600
+            toggle1();
+            counter = setInterval( count, 1000 );
+        }
+        reset.onclick = function() {
+            time = 0;
+            sec.innerHTML = time % 60;
+            min.innerHTML = Math.floor( time / 60 );
+        }
+        function toggle1() {
+             start.disabled = true;
+             stop.disabled = true;
+        }
+        function toggle2(){     
+            start.disabled = false;
+            stop.disabled = false;
+        }
+        function count() {
+            if( time === 0 ) {
+            sec.innerHTML = 0;
+            min.innerHTML = 0;
+            toggle2();
+            alert("休憩が終了しました、監視モードを再開します");
+            clearInterval( counter );
+            } else {
+            time -= 1;
+            sec.innerHTML = time % 60;
+            min.innerHTML = Math.floor( time / 60 );
+            }
+        }
+    </script>
+    
+    
     <h2>~このサイトについて~<br></br>
         このサイトでは姿勢検知を元に使用者が勉強をしている時は作業用bgmを流し、寝ている時はアラームを流してくれます。<br></br>
         検知している姿勢パターンは全部で5つあり、<br></br>
