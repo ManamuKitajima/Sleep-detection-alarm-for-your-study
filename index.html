@@ -70,55 +70,6 @@
     <input type="button" class = 'resetb' id="reset" value="RESET">
     </p>
     </div>
-    <script>
-        window.onload = function(){
-        } 
-        var time = 0;
-        var counter;
-        var min = document.getElementById("min");
-        var sec = document.getElementById("sec");
-        var start = document.getElementById("start");
-        var stop = document.getElementById("stop");
-        var reset = document.getElementById("reset");
-        start.onclick = function() {
-            time = 300;
-            toggle1();
-            counter = setInterval( count, 1000 );
-        }
-        stop.onclick = function() {
-            time = 600
-            toggle1();
-            counter = setInterval( count, 1000 );
-        }
-        reset.onclick = function() {
-            time = 0;
-            sec.innerHTML = time % 60;
-            min.innerHTML = Math.floor( time / 60 );
-        }
-        function toggle1() {
-             start.disabled = true;
-             stop.disabled = true;
-        }
-        function toggle2(){     
-            start.disabled = false;
-            stop.disabled = false;
-        }
-        function count() {
-            if( time === 0 ) {
-            sec.innerHTML = 0;
-            min.innerHTML = 0;
-            toggle2();
-            alert("休憩が終了しました、監視モードを再開します");
-            clearInterval( counter );
-            } else {
-            time -= 1;
-            sec.innerHTML = time % 60;
-            min.innerHTML = Math.floor( time / 60 );
-            }
-        }
-    </script>
-    
-    
     <h2>~このサイトについて~<br></br>
         このサイトでは姿勢検知を元に使用者が勉強をしている時は作業用bgmを流し、寝ている時はアラームを流してくれます。<br></br>
         検知している姿勢パターンは全部で5つあり、<br></br>
@@ -144,6 +95,54 @@
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/pose@0.8/dist/teachablemachine-pose.min.js"></script>
 <script type="text/javascript">
+        var status = "No status";
+    //Timer
+    window.onload = function(){
+    } 
+    var time = 0;
+    var counter;
+    var min = document.getElementById("min");
+    var sec = document.getElementById("sec");
+    var start = document.getElementById("start");
+    var stop = document.getElementById("stop");
+    var reset = document.getElementById("reset");
+    start.onclick = function() {
+        time = 300;
+        toggle1();
+        counter = setInterval( count, 1000 );
+    }
+    stop.onclick = function() {
+        time = 600
+        toggle1();
+        counter = setInterval( count, 1000 );
+    }
+    reset.onclick = function() {
+        time = 0;
+        sec.innerHTML = time % 60;
+        min.innerHTML = Math.floor( time / 60 );
+    }
+    function toggle1() {
+         start.disabled = true;
+         stop.disabled = true;
+    }
+    function toggle2(){     
+        start.disabled = false;
+        stop.disabled = false;
+    }
+    function count() {
+        status = "Study";
+        if( time === 0 ) {
+        sec.innerHTML = 0;
+        min.innerHTML = 0;
+        toggle2();
+        alert("休憩が終了しました、監視モードを再開します");
+        clearInterval( counter );
+        } else {
+        time -= 1;
+        sec.innerHTML = time % 60;
+        min.innerHTML = Math.floor( time / 60 );
+        }
+    }
     // More API functions here:
     // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/pose
 
@@ -193,7 +192,6 @@
     b1.volume = 0.1;
     b2.volume = 0.1;
     b3.volume = 0.1;
-    var status = "No status"
     var img = new Array();
     img[0] = new Image();
     img[0].src = "s1.JPG";
