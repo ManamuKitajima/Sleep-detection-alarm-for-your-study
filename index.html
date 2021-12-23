@@ -213,7 +213,7 @@
             labelContainer.childNodes[i].innerHTML = classPrediction;
         }
         
-
+     if(status != "Rest"){
         if(prediction[0].probability.toFixed(2) > 0.90){
             status = "Wake" 
         }else if(prediction[1].probability.toFixed(2) > 0.90){
@@ -227,6 +227,7 @@
         }else if(prediction[5].probability.toFixed(2) > 0.90){
             status = "Bad_Pose" 
         }
+    }
 
         if (status == "Wake"){
             document.getElementById("camback").src=img[2].src;
