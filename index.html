@@ -40,6 +40,8 @@
             </select>
         </div>
     </form>
+    <img id ="camback">
+    
     <script>
         function valueChange(){
           console.log(A_Sound.value);
@@ -56,6 +58,24 @@
         let S_Sound = document.getElementById('S_Sound');
         S_Sound.addEventListener('change', valueChange);
     </script>
+    <h2>~このサイトについて~<br></br>
+        このサイトでは姿勢検知を元に使用者が勉強をしている時は作業用bgmを流し、寝ている時はアラームを流してくれます。<br></br>
+        検知している姿勢パターンは全部で5つあり、<br></br>
+        1つ目はカメラに顔が真っ直ぐ向いている「Wake」状態<br></br>
+        2つ目は勉強をして少し顔が下に向いている「Study」状態<br></br>
+        3つ目は頭が下がりすぎ、またはうつ伏せになってしまっている「Sleep1」状態<br></br>
+        4つ目は頭が後ろの方にいき、椅子にもたれてだらけている「Sleep2」状態<br></br>
+        5つ目が頬杖をついているなど良くない姿勢である「Bad Pose」状態<br></br>
+        がある。<br></br>
+        ~サイトの使い方~<br></br>
+        1. このサイトを使用する際は部屋を明るくし、胸元くらいまで映る位置にカメラを設置してください。<br></br>
+           きちんとした勉強机で行うと検知しやすくなります。<br></br>
+        2. アラームとbgmを選択してください。<br></br>
+        3. 準備ができたら勉強開始ボタンをクリック！<br></br>
+        4. 一度休憩したいとき、止めたいときは10分間休憩ボタンを押しましょう。<br></br>
+        　(休憩中に寝ないように10分経つと自動で再開されます。)<br></br>
+        5. あとは集中して勉強するだけ！<br></br>
+    </h2>
     <div>Teachable Machine Pose Model</div>
 <button class = "start" type="button" onclick="init()">勉強開始</button>
 <div><canvas id="canvas"></canvas></div>
@@ -109,8 +129,18 @@
     var b1 = new Audio('jazz.mp3');
     var b2 = new Audio('223.mp3');
     var b3 = new Audio('summer.mp3');
+    b1.volume(0.1);
+    b2.volume(0.1);
+    b3.volume(0.1);
     var status = "No status"
-    var study = new Audio('jazz.mp3');
+    var img = new Array();
+    img[0] = new Image();
+    img[0].src = "s1.jpg";
+    img[1] = new Image();
+    img[1].src = "s2.jpg";
+    img[2] = new Image();
+    img[2].src=  "s3.jpg";
+
     async function predict() {
         // Prediction #1: run input through posenet
         // estimatePose can take in an image, video or canvas html element
@@ -140,6 +170,7 @@
         }
 
         if (status == "Wake"){
+            document.getElementById("camback").src=img[2].src;
             alarm.pause();
             siren.pause();
             sigure.pause();
@@ -147,6 +178,7 @@
             b2.pause();
             b3.pause();
         }else if(status == "Study"){
+            document.getElementById("camback").src=img[2].src;
             alarm.pause();
             siren.pause();
             sigure.pause();
@@ -164,6 +196,7 @@
                 b2.pause();
             }
         }else if(status == "Sleep"){
+            document.getElementById("camback").src=img[0].src;
             b1.pause();
             b2.pause();
             b3.pause();
@@ -183,23 +216,32 @@
                 siren.pause();
                 console.log("c");
             }
-         }else{
-           b1.pause();
-           b2.pause();
-           b3.pause();
-           alarm.pause();
-           siren.pause();
-           sigure.pause();
-         }
-        /*
-        else if(status == "Noone"){
-           alarm.pause();
-           study.pause();
+         }else if(status == "Noone"){
+            b1.pause();
+            b2.pause();
+            b3.pause();
+            alarm.pause();
+            siren.pause();
+            sigure.pause();
         }else if(status == "Bad_Pose"){
-           alarm.pause();
-           study.pause();
-        }
-        */
+            document.getElementById("camback").src=img[1].src;
+            b1.pause();
+            b2.pause();
+            b3.pause();
+            alarm.pause();
+            siren.pause();
+            sigure.pause();
+        }else{
+            b1.pause();
+            b2.pause();
+            b3.pause();
+            alarm.pause();
+            siren.pause();
+            sigure.pause();
+         }
+
+
+
         
         // finally draw the poses
         drawPose(pose);
