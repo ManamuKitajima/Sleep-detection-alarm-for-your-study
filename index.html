@@ -8,7 +8,9 @@
     <title>睡眠感知アラーム(勉強用)</title>
 </head>
 <body>
+
 <h1>あなたの<span class = "Change_red">勉強</span>をサポートします<br>~勉強用bgm・睡眠防止アラーム~</h1>
+
     <div class = "Top_image">
         <img src = './Icon_pic/alarm_ico.png'>   
     </div>
@@ -19,6 +21,7 @@
         <img src ='./Icon_pic/back.png'/>
         <p></p>
     </div>
+
     <form method="post">
         <div>
             <label class = "A_Sound" for="A_Sound">アラームの音を選択してください</label>
@@ -40,6 +43,7 @@
             </select>
         </div>
     </form>
+
     <img id ="camback">
     
     <script>
@@ -59,7 +63,8 @@
         S_Sound.addEventListener('change', valueChange);
     </script>
     
-        <div id="timer">
+    
+    <div id="timer">
     <p class = 'clock'>
     <span id="min">0</span> m
     <span id="sec">0</span> s
@@ -70,6 +75,7 @@
     <input type="button" class = 'resetb' id="reset" value="RESET">
     </p>
     </div>
+
     <h2>~このサイトについて~<br></br>
         このサイトでは姿勢検知を元に使用者が勉強をしている時は作業用bgmを流し、寝ている時はアラームを流してくれます。<br></br>
         検知している姿勢パターンは全部で5つあり、<br></br>
@@ -88,15 +94,19 @@
         　(休憩中に寝ないように10分経つと自動で再開されます。)<br></br>
         5. あとは集中して勉強するだけ！<br></br>
     </h2>
-    <div>Teachable Machine Pose Model</div>
+
+    <div>Reference</div>
+
 <button class = "start" type="button" onclick="init()">勉強開始</button>
 <div><canvas id="canvas"></canvas></div>
 <div id="label-container"></div>
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/pose@0.8/dist/teachablemachine-pose.min.js"></script>
 <script type="text/javascript">
-        var status = "No status";
-    //Timer
+
+    var status = "No status";  
+    
+    // Timer
     window.onload = function(){
     } 
     var time = 0;
@@ -144,6 +154,7 @@
         min.innerHTML = Math.floor( time / 60 );
         }
     }
+
     // More API functions here:
     // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/pose
 
@@ -184,12 +195,19 @@
         await predict();
         window.requestAnimationFrame(loop);
     }
-    var alarm = new Audio('./Alarm/Alarm.mp3');
-    var siren = new Audio('./Alarm/Siren.mp3');
-    var sigure = new Audio('./Alarm/Sigureui.mp3');
-    var b1 = new Audio('./Bgm/jazz.mp3');
-    var b2 = new Audio('./Bgm/223.mp3');
-    var b3 = new Audio('./Bgm/summer.mp3');
+
+    // sound定義
+    var alarm = new Array();
+    alarm[0] = new Audio('./Alarm/Alarm.mp3');
+    alarm[1] = new Audio('./Alarm/Siren.mp3');
+    alarm[2] = new Audio('./Alarm/Sigureui.mp3');
+
+    var bgm = new Array();
+    bgm[1] = new Audio('./Bgm/jazz.mp3');
+    bgm[2] = new Audio('./Bgm/223.mp3');
+    bgm[3] = new Audio('./Bgm/summer.mp3');
+
+    // status_pic定義
     var img = new Array();
     img[0] = new Image();
     img[0].src = "./Status_pic/s1.JPG";
@@ -212,109 +230,131 @@
                 prediction[i].className + ": " + prediction[i].probability.toFixed(2);
             labelContainer.childNodes[i].innerHTML = classPrediction;
         }
-        
-     if(status != "Rest"){
-        if(prediction[0].probability.toFixed(2) > 0.90){
-            status = "Wake" 
-        }else if(prediction[1].probability.toFixed(2) > 0.90){
-            status = "Study" 
-        }else if(prediction[2].probability.toFixed(2) > 0.90){
-            status = "Sleep" 
-        }else if(prediction[3].probability.toFixed(2) > 0.90){
-            status = "Noone" 
-        }else if(prediction[4].probability.toFixed(2) > 0.90){
-            status = "Sleep"
-        }else if(prediction[5].probability.toFixed(2) > 0.90){
-            status = "Bad_Pose" 
+    
+    // PoseごとにStatus名をつける
+        if(status != "Rest"){
+            if(prediction[0].probability.toFixed(2) > 0.90){
+                status = "Wake" 
+            }else if(prediction[1].probability.toFixed(2) > 0.90){
+                status = "Study" 
+            }else if(prediction[2].probability.toFixed(2) > 0.90){
+                status = "Sleep" 
+            }else if(prediction[3].probability.toFixed(2) > 0.90){
+                status = "Noone" 
+            }else if(prediction[4].probability.toFixed(2) > 0.90){
+                status = "Sleep"
+            }else if(prediction[5].probability.toFixed(2) > 0.90){
+                status = "Bad_Pose" 
+            }
         }
-    }
 
         if (status == "Wake"){
+
             document.getElementById("camback").src=img[2].src;
-            alarm.pause();
-            siren.pause();
-            sigure.pause();
-            b1.pause();
-            b2.pause();
-            b3.pause();
+            for(let i =0; i<3; i++){
+                alarm[i].pause();
+                alarm[i].currentTime = 0;
+            }
+            for(let i =0; i<3; i++){
+                bgm[i].pause();
+                bgm[i].currentTime = 0;
+            }
+
         }else if(status == "Study"){
+
             document.getElementById("camback").src=img[2].src;
-            alarm.pause();
-            siren.pause();
-            sigure.pause();
-             if(S_Sound.value === '4'){
-                b1.play();
-                b2.pause();
-                b3.pause();
-            }else if(S_Sound.value === '5'){
-                b2.play();
-                b1.pause();
-                b3.pause();
-            }else if(S_Sound.value === '6'){
-                b3.play();
-                b1.pause();
-                b2.pause();
+            for(let i =0; i<3; i++){
+                alarm[i].pause();
+                alarm[i].currentTime = 0;
             }
-        }else if(status == "Sleep"){
-            document.getElementById("camback").src=img[0].src;
-            b1.pause();
-            b2.pause();
-            b3.pause();
-            if(A_Sound.value === '1'){
-                alarm.play();
-                siren.pause();
-                sigure.pause();
-                console.log("a");
-            }else if(A_Sound.value === '2'){
-                siren.play();
-                alarm.pause();
-                sigure.pause();
-                console.log("b");
-            }else if(A_Sound.value === '3'){
-                sigure.play();
-                alarm.pause();
-                siren.pause();
-                console.log("c");
-            }
-         }else if(status == "Noone"){
-            b1.pause();
-            b2.pause();
-            b3.pause();
-            alarm.pause();
-            siren.pause();
-            sigure.pause();
-        }else if(status == "Bad_Pose"){
-            document.getElementById("camback").src=img[1].src;
-            b1.pause();
-            b2.pause();
-            b3.pause();
-            alarm.pause();
-            siren.pause();
-            sigure.pause();
-        }else if (status == "Rest"){
-            document.getElementById("camback").src=img[3].src;
-            alarm.pause();
-            siren.pause();
-            sigure.pause();
+
             if(S_Sound.value === '4'){
-                b1.play();
-            }else if(s_Sound.value === '5'){
-                b2.play();
+                bgm[0].play();
+                bgm[1].pause();
+                bgm[2].pause();
+            }else if(S_Sound.value === '5'){
+                bgm[0].pause();
+                bgm[1].play();
+                bgm[2].pause();
             }else if(S_Sound.value === '6'){
-                b3.play();
+                bgm[0].pause();
+                bgm[1].pause();
+                bgm[2].play();
             }
+
+        }else if(status == "Sleep"){
+
+            document.getElementById("camback").src=img[0].src;
+            for(let i =0; i<3; i++){
+                bgm[i].pause();
+                bgm[i].currentTime = 0;
+            }
+
+            if(A_Sound.value === '1'){
+                alarm[0].play();
+                alarm[1].pause();
+                alarm[2].pause();
+            }else if(A_Sound.value === '2'){
+                alarm[0].pause();
+                alarm[1].play();
+                alarm[2].pause();
+            }else if(A_Sound.value === '3'){
+                alarm[0].pause();
+                alarm[1].pause();
+                alarm[2].play();
+            }
+        }else if(status == "Noone"){
+
+            document.getElementById("camback").src=img[2].src;
+            for(let i =0; i<3; i++){
+                alarm[i].pause();
+                alarm[i].currentTime = 0;
+            }
+            for(let i =0; i<3; i++){
+                bgm[i].pause();
+                bgm[i].currentTime = 0;
+            }
+
+        }else if(status == "Bad_Pose"){
+
+            document.getElementById("camback").src=img[1].src;
+            for(let i =0; i<3; i++){
+                alarm[i].pause();
+                alarm[i].currentTime = 0;
+            }
+ 
+        }else if (status == "Rest"){
+
+            document.getElementById("camback").src=img[3].src;
+            for(let i =0; i<3; i++){
+                alarm[i].pause();
+                alarm[i].currentTime = 0;
+            }
+            if(S_Sound.value === '4'){
+                bgm[0].play();
+                bgm[1].pause();
+                bgm[2].pause();
+            }else if(s_Sound.value === '5'){
+                bgm[0].pause();
+                bgm[1].play();
+                bgm[2].pause();
+            }else if(S_Sound.value === '6'){
+                bgm[0].pause();
+                bgm[1].pause();
+                bgm[2].play();
+            }
+
         }else{
-            b1.pause();
-            b2.pause();
-            b3.pause();
-            alarm.pause();
-            siren.pause();
-            sigure.pause();
+            for(let i =0; i<3; i++){
+                alarm[i].pause();
+                alarm[i].currentTime = 0;
+            }
+            for(let i =0; i<3; i++){
+                bgm[i].pause();
+                bgm[i].currentTime = 0;
+            }
          }
 
-
-
-        
         // finally draw the poses
         drawPose(pose);
     }
