@@ -143,15 +143,15 @@ h1 {
     text-align: center;
     position: absolute;
     top: 900px;
-    left: 250px;
+    left: 20px;
     margin: auto;
 }
 
 #canvas{
     text-align: center;
     position: absolute;
-    top: 900px;
-    left: 600px;
+    top: 950px;
+    left: 620px;
     margin: auto;
 }
 
