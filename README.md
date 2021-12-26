@@ -1,7 +1,7 @@
 # Sleep detection alarm for your study
 ## Click on [this](https://manamukitajima.github.io/Sleep-detection-alarm-for-your-study/)
-"Sleep detection alarm for your study" is support site using teachable machine.<br></br>
-If you use this site while studying, an alarm will sound when you fall asleep
+### "Sleep detection alarm for your study" is support site using teachable machine.  
+### If you use this site while studying, an alarm will sound when you fall asleep
 
 Reference  
 (1) Teachable Machine  
