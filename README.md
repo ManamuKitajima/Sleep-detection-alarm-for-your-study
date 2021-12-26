@@ -11,8 +11,19 @@ Reference
 (3)	TechAcademyマガジン「JavaScriptで複数のプルダウンメニューを連動させる方法を現役エンジニアが解説【初心者向け】」                               https://techacademy.jp/magazine/27725  
 (4)	Fラン大卒の海外就職「Javascriptで3分タイマー作ったので解説します【Javascript初心者】」  
     https://www.fran-shushoku.com/1047/  
-(5)	https://gist.github.com/myy/4029896 
-
-
-
-
+(5)	https://gist.github.com/myy/4029896   
+  
+・Sound reference  
+・エスフェクツ：無料効果音素材配信  
+https://esffects.net/332.html  
+・効果音ラボ  
+https://soundeffect-lab.info/sound/anime/  
+・しぐれうい様  
+https://www.youtube.com/watch?v=pbWvj2whmZQ&t=0s (本配信)  
+https://www.youtube.com/watch?v=KJCKNQdbHe8 (切り抜き)  
+・Ghostrifter Official - On My Way [Lofi Study Music]  
+https://www.youtube.com/watch?v=kpnjrWp_Rrk  
+・2:23 AM / しゃろう【公式】　  
+https://www.youtube.com/watch?v=Yb-rLsCpBvI&t=1s  
+・【フリーBGM】サマーアイスクリーム【Electro】/桜餅ルナ  
+https://www.youtube.com/watch?v=ZjOT_4-oJUA&t=16s  
